@@ -1,1 +1,18 @@
-"2222" 
+def ackermann_non_recursive(m, n):
+    stack = []
+    stack.append((m, n))
+    while stack:
+        m, n = stack.pop()
+        if m == 0:
+            result = n + 1
+        elif n == 0:
+            stack.append((m - 1, 1))
+        else:
+            stack.append((m - 1, None))  # 使用None佔位符，稍後回來處理
+            stack.append((m, n - 1))
+            continue
+
+        if stack:
+            m2, n2 = stack.pop()
+            stack.append((m2, result))  # 更新佔位符結果
+    return result
