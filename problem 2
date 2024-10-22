@@ -1,0 +1,8 @@
+def powerset(s):
+    if not s:
+        return [[]]  # 空集的冪集
+    else:
+        first, rest = s[0], s[1:]
+        subsets_without_first = powerset(rest)
+        subsets_with_first = [[first] + subset for subset in subsets_without_first]
+        return subsets_without_first + subsets_with_first
